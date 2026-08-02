@@ -162,9 +162,7 @@ JWT_SECRET=your_secret_key
 
 ---
 
-### 📄 PDF Upload
 
-![PDF Upload](screenshots/upload-pdf.png)
 ## 🌐 Future Improvements
 
 - Voice Assistant
@@ -178,13 +176,12 @@ JWT_SECRET=your_secret_key
 
 ## 👨‍💻 Author
 
-**Premraj Hanji**
+**Samarth Hanji**
 
 GitHub:
 https://github.com/hanjisam59
 
-LinkedIn:
-(Add LinkedIn Profile)
+
 
 ---
 

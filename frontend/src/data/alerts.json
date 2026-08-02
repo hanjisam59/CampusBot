@@ -1,0 +1,7 @@
+[
+  { "id": "1", "title": "Exam Form Deadline", "category": "Exams", "date": "2026-10-01", "status": "urgent", "pinned": true, "description": "Fill before 1 Oct" },
+  { "id": "2", "title": "Tuition Fee Due", "category": "Fees", "date": "2026-09-30", "status": "upcoming", "description": "Pay via portal" },
+  { "id": "3", "title": "Tech Fest 2026-27", "category": "Events", "date": "2027-02-05", "status": "upcoming" },
+  { "id": "4", "title": "Scholarship Result", "category": "Scholarships", "date": "2026-07-30", "status": "completed" }
+]
+

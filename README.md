@@ -138,9 +138,29 @@ JWT_SECRET=your_secret_key
 
 ---
 
+## 📸 Project Screenshots
+
+### 🏠 Home Page
+
+![Home Page](screenshots/Home.png)
+
+---
+
+### 🔐 Student Login
+
+![Student Login](screenshots/studentlogin.png)
+
+---
+
+### 📝 Student Registration
+
+![Student Registration](screenshots/register.png)
+
+---
+
 ### 🤖 AI Chatbot
 
-![Chatbot](screenshots/chatbot.png)
+![AI Chatbot](screenshots/chatbot.png)
 
 ---
 
@@ -152,15 +172,19 @@ JWT_SECRET=your_secret_key
 
 ### 👤 Student Profile
 
-![Profile](screenshots/profile.png)
+![Student Profile](screenshots/profile.png)
+
+---
+
+### 🔑 Admin Login
+
+![Admin Login](screenshots/adminlogin.png)
 
 ---
 
 ### 👨‍💼 Admin Dashboard
 
-![Admin Dashboard](screenshots/admin-dashboard.png)
-
----
+![Admin Dashboard](screenshots/admindashboard.png)
 
 
 ## 🌐 Future Improvements

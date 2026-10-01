@@ -1,0 +1,54 @@
+name: campusbot-main
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: entc2027
+      MONGO_INITDB_ROOT_PASSWORD: entc2027
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mongo-network
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: entc2027
+      ME_CONFIG_MONGODB_ADMINPASSWORD: entc2027
+      ME_CONFIG_MONGODB_URL: "mongodb://entc2027:entc2027@mongo:27017/?authSource=admin"
+    depends_on:
+      - mongo
+    networks:
+      - mongo-network
+
+  campus:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    container_name: campusbot-main
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: "8000"
+      MONGO_URI: "mongodb://entc2027:entc2027@mongo:27017/Campus_Mitra?authSource=admin"
+    depends_on:
+      - mongo
+    networks:
+      - mongo-network
+
+volumes:
+  mongo-data:
+
+networks:
+  mongo-network:
+    driver: bridge

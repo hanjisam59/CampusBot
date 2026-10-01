@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
 const connectDB = require("./config/db");
 
 // Connect to MongoDB
@@ -40,4 +39,3 @@ app.listen(PORT, () => {
   console.log(`📱 Frontend URL: http://localhost:5173`);
   console.log(`🔗 API URL: http://localhost:${PORT}`);
 });
-

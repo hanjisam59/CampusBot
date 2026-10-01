@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppStore } from '../store/appStore'
 import { useState } from 'react'
+import { apiUrl } from '../utils/api'
 
 export default function AdminLoginPage() {
   const navigate = useNavigate()
@@ -22,7 +23,7 @@ export default function AdminLoginPage() {
               localStorage.removeItem('token')
               logout && logout()
 
-              const res = await fetch('http://localhost:8000/api/admin/auth/login', {
+              const res = await fetch(apiUrl('/api/admin/auth/login'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ staffId, password }),
@@ -59,5 +60,4 @@ export default function AdminLoginPage() {
     </div>
   )
 }
-
 

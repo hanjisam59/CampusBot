@@ -1,6 +1,7 @@
 import ProfileCard from '../components/ProfileCard'
 import { useEffect, useState } from 'react'
 import { useAppStore } from '../store/appStore'
+import { apiUrl } from '../utils/api'
 
 export default function ProfilePage() {
   const { student } = useAppStore()
@@ -18,7 +19,7 @@ export default function ProfilePage() {
     if (!data) {
       const token = localStorage.getItem('token')
       if (token) {
-        fetch('http://localhost:8000/api/auth/me', {
+        fetch(apiUrl('/api/auth/me'), {
           headers: { Authorization: `Bearer ${token}` },
         })
           .then((r) => r.json())
@@ -59,5 +60,4 @@ export default function ProfilePage() {
     </div>
   )
 }
-
 

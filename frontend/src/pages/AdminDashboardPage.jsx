@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { apiUrl } from '../utils/api'
 
 function CreateNoticePanel() {
   const [heading, setHeading] = useState('')
@@ -15,7 +16,7 @@ function CreateNoticePanel() {
     }
     setSubmitting(true)
     try {
-      await fetch('http://localhost:8000/api/notices', {
+      await fetch(apiUrl('/api/notices'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ heading, date, type, description, pinned })
@@ -97,7 +98,7 @@ function AdminQueriesPanel() {
   async function load() {
     setLoading(true)
     try {
-      const r = await fetch('http://localhost:8000/api/admin/queries')
+      const r = await fetch(apiUrl('/api/admin/queries'))
       const j = await r.json()
       if (j?.items) setItems(j.items)
     } finally { setLoading(false) }
@@ -111,7 +112,7 @@ function AdminQueriesPanel() {
       return
     }
     try {
-      await fetch(`http://localhost:8000/api/admin/queries/${id}/resolve`, {
+      await fetch(apiUrl(`/api/admin/queries/${id}/resolve`), {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ response })
       })
       await load()
@@ -182,7 +183,7 @@ export default function AdminDashboardPage() {
       const form = new FormData()
       form.append('file', fileBlob)
       form.append('knowledge', knowledge || '')
-      const res = await fetch('http://localhost:8000/api/upload/merge', {
+      const res = await fetch(apiUrl('/api/upload/merge'), {
         method: 'POST',
         body: form,
       })
@@ -194,7 +195,7 @@ export default function AdminDashboardPage() {
       addLog(`Merged and saved: ${data.file.merged}`)
       // Fetch recent uploads after success
       try {
-        const r = await fetch('http://localhost:8000/api/upload')
+        const r = await fetch(apiUrl('/api/upload'))
         const j = await r.json()
         if (Array.isArray(j.uploads)) setRecentUploads(j.uploads)
       } catch {}
@@ -209,7 +210,7 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     ;(async () => {
       try {
-        const r = await fetch('http://localhost:8000/api/upload')
+        const r = await fetch(apiUrl('/api/upload'))
         const j = await r.json()
         if (Array.isArray(j.uploads)) setRecentUploads(j.uploads)
       } catch {}
@@ -299,13 +300,13 @@ export default function AdminDashboardPage() {
                         {selected.mergedName}
                       </div>
                       <div style={{ display: 'flex', gap: 8 }}>
-                        <a className="btn" href={`http://localhost:8000/uploads/${selected.mergedName}`} target="_blank" rel="noreferrer">Open</a>
+                        <a className="btn" href={apiUrl(`/uploads/${selected.mergedName}`)} target="_blank" rel="noreferrer">Open</a>
                         <button className="btn" onClick={() => setSelected(null)}>Close</button>
                       </div>
                     </div>
                     <iframe
                       title="Preview"
-                      src={`http://localhost:8000/uploads/${selected.mergedName}`}
+                      src={apiUrl(`/uploads/${selected.mergedName}`)}
                       style={{ width: '100%', height: 260, border: '1px solid var(--border)' }}
                     />
                   </div>
@@ -332,5 +333,4 @@ export default function AdminDashboardPage() {
     </div>
   )
 }
-
 

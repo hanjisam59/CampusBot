@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useAppStore } from '../store/appStore'
+import { apiUrl } from '../utils/api'
 
 export default function StudentRegisterPage() {
   const navigate = useNavigate()
@@ -26,7 +27,7 @@ export default function StudentRegisterPage() {
               return
             }
             try {
-              const res = await fetch('http://localhost:8000/api/auth/register', {
+              const res = await fetch(apiUrl('/api/auth/register'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ fullName, enrollmentNo, email, course, password }),
@@ -84,5 +85,4 @@ export default function StudentRegisterPage() {
     </div>
   )
 }
-
 

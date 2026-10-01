@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Send, Globe } from 'lucide-react'
 import { useAppStore } from '../store/appStore'
 import { motion } from 'framer-motion'
+import { apiUrl } from '../utils/api'
 
 export function ChatWindow() {
   const [input, setInput] = useState('')
@@ -29,7 +30,7 @@ export function ChatWindow() {
     if (Object.keys(supportedLanguages).length > 0) return // Already loaded
     
     try {
-      const response = await fetch('http://localhost:8000/api/faq/languages')
+      const response = await fetch(apiUrl('/api/faq/languages'))
       const data = await response.json()
       if (data.success) {
         setSupportedLanguages(data.languages)
@@ -120,7 +121,7 @@ export function ChatWindow() {
     try {
       const user = JSON.parse(localStorage.getItem('student') || 'null')
       const userEmail = user?.email || null
-      const resp = await fetch('http://localhost:8000/api/faq/query', {
+      const resp = await fetch(apiUrl('/api/faq/query'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -272,5 +273,4 @@ export function ChatWindow() {
 }
 
 export default ChatWindow;
-
 

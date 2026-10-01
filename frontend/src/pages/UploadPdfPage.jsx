@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Upload, FileText, Globe, Download, CheckCircle, AlertCircle, Loader } from 'lucide-react'
 import { useAppStore } from '../store/appStore'
+import { apiUrl } from '../utils/api'
 
 export default function UploadPdfPage() {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -26,7 +27,7 @@ export default function UploadPdfPage() {
     if (Object.keys(supportedLanguages).length > 0) return // Already loaded
     
     try {
-      const response = await fetch('http://localhost:8000/api/faq/languages')
+      const response = await fetch(apiUrl('/api/faq/languages'))
       const data = await response.json()
       if (data.success) {
         setSupportedLanguages(data.languages)
@@ -109,7 +110,7 @@ export default function UploadPdfPage() {
       formData.append('pdf', selectedFile)
       formData.append('language', selectedLanguage)
 
-      const response = await fetch('http://localhost:8000/api/pdf/pdf-summarize', {
+      const response = await fetch(apiUrl('/api/pdf/pdf-summarize'), {
         method: 'POST',
         body: formData
       })

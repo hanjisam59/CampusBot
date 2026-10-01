@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAppStore } from '../store/appStore'
+import { apiUrl } from '../utils/api'
 
 export function LanguageToggle() {
   const { language, setLanguage, supportedLanguages, setSupportedLanguages, getLanguageName } = useAppStore()
@@ -16,7 +17,7 @@ export function LanguageToggle() {
     
     setLoading(true)
     try {
-      const response = await fetch('http://localhost:8000/api/faq/languages')
+      const response = await fetch(apiUrl('/api/faq/languages'))
       const data = await response.json()
       if (data.success) {
         setSupportedLanguages(data.languages)
@@ -121,5 +122,4 @@ export function LanguageToggle() {
 }
 
 export default LanguageToggle
-
 

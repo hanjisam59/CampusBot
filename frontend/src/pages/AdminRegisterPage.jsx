@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppStore } from '../store/appStore'
 import { useState } from 'react'
+import { apiUrl } from '../utils/api'
 
 export default function AdminRegisterPage() {
   const navigate = useNavigate()
@@ -26,7 +27,7 @@ export default function AdminRegisterPage() {
               return
             }
             try {
-              const res = await fetch('http://localhost:8000/api/admin/auth/register', {
+              const res = await fetch(apiUrl('/api/admin/auth/register'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ fullName, staffId, email, department, password }),
@@ -81,5 +82,4 @@ export default function AdminRegisterPage() {
     </div>
   )
 }
-
 

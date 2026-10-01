@@ -3,6 +3,7 @@ import AlertCard from '../components/AlertCard'
 import { Modal } from '../components/Modal'
 import DATA from '../data/alerts.json'
 import { Send } from 'lucide-react'
+import { apiUrl } from '../utils/api'
 
 export default function NotificationsPage() {
   const [category, setCategory] = useState('All')
@@ -25,7 +26,7 @@ export default function NotificationsPage() {
   useEffect(() => {
     async function loadPublished() {
       try {
-        const r = await fetch('http://localhost:8000/api/admin/queries/published')
+        const r = await fetch(apiUrl('/api/admin/queries/published'))
         const j = await r.json()
         if (j?.items) setPublishedResponses(j.items)
       } catch (_) {}
@@ -36,7 +37,7 @@ export default function NotificationsPage() {
   useEffect(() => {
     async function loadNotices() {
       try {
-        const r = await fetch('http://localhost:8000/api/notices')
+        const r = await fetch(apiUrl('/api/notices'))
         const j = await r.json()
         if (j?.notices) setNotices(j.notices)
       } catch (_) {}
@@ -50,7 +51,7 @@ export default function NotificationsPage() {
     try {
       const user = JSON.parse(localStorage.getItem('student') || 'null')
       const userEmail = user?.email || null
-      await fetch('http://localhost:8000/api/faq/query', {
+      await fetch(apiUrl('/api/faq/query'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: newQuestion, userEmail }),
@@ -229,5 +230,4 @@ export default function NotificationsPage() {
     </div>
   )
 }
-
 

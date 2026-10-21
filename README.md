@@ -1,5 +1,8 @@
-# 🎓 CampusBot – AI-Powered College Assistant
+# 🎓 CampusBot – Multilingual College Chat Assistant 
+# CampusBot
 
+![CI/CD Status](https://github.com/hanjisam59/CampusBot/actions/workflows/cicd.yaml/badge.svg)
+A full-stack MERN platform with Docker and automated CI/CD.
 CampusBot is a full-stack MERN web application that helps students access college-related information through an intelligent chatbot. It also provides an admin dashboard for managing notices, PDFs, FAQs, and student queries.
 
 ---
